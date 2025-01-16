@@ -2,8 +2,7 @@
     "name": "acaksan/project",
     "description": "A brief description of your project",
     "require": {
-        "php": ">=7.4",
-        // diğer bağımlılıklar
+        "php": ">=7.4"
     },
     "autoload": {
         "psr-4": {
@@ -12,9 +11,5 @@
     },
     "scripts": {
         "test": "vendor/bin/phpunit"
-    }
-}{
-    "require": {
-        "automattic/woocommerce": "^3.1"
     }
 }
