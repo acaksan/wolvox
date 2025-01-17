@@ -1,20 +1,20 @@
 <?php return array(
     'root' => array(
-        'name' => '__root__',
-        'pretty_version' => 'dev-master',
-        'version' => 'dev-master',
-        'reference' => 'e4513f2e52a459c3558fdc7e8da348e6152b35a3',
-        'type' => 'library',
+        'name' => 'acaksan/woocommerce-b2c-integration',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => '8381e1a0002917b91fff0092a09ec5d8ee290be3',
+        'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
         'dev' => true,
     ),
     'versions' => array(
-        '__root__' => array(
-            'pretty_version' => 'dev-master',
-            'version' => 'dev-master',
-            'reference' => 'e4513f2e52a459c3558fdc7e8da348e6152b35a3',
-            'type' => 'library',
+        'acaksan/woocommerce-b2c-integration' => array(
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => '8381e1a0002917b91fff0092a09ec5d8ee290be3',
+            'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
             'dev_requirement' => false,
