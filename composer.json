@@ -1,5 +1,22 @@
 {
+    "name": "acaksan/woocommerce-b2c-integration",
+    "description": "WooCommerce ve Wolvox B2C Entegrasyonu için geliştirilmiş bir yönetim paneli.",
+    "type": "project",
     "require": {
+        "php": "^7.4 || ^8.0",
         "automattic/woocommerce": "^3.1"
-    }
+    },
+    "autoload": {
+        "psr-4": {
+            "Classes\\": "classes/"
+        }
+    },
+    "license": "MIT",
+    "authors": [
+        {
+              "name": "cemal aksan",
+            "email": "a.c.aksan@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable"
 }
