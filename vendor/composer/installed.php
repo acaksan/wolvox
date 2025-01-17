@@ -3,7 +3,7 @@
         'name' => 'acaksan/woocommerce-b2c-integration',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '8381e1a0002917b91fff0092a09ec5d8ee290be3',
+        'reference' => '0a6ba29536f96929ad562cfc162ce498e913d8df',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'acaksan/woocommerce-b2c-integration' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '8381e1a0002917b91fff0092a09ec5d8ee290be3',
+            'reference' => '0a6ba29536f96929ad562cfc162ce498e913d8df',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

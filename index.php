@@ -1,4 +1,7 @@
 <?php
+// UTF-8 karakter kodlaması
+header('Content-Type: text/html; charset=utf-8');
+
 // Composer autoload dosyasını dahil et (WooCommerce SDK için gerekli)
 require_once __DIR__ . '/vendor/autoload.php';
 
@@ -21,20 +24,43 @@ function renderMenu() {
         'wolvox' => 'Wolvox Entegrasyonu',
     ];
 
-    echo '<nav>';
+    echo '<nav class="navbar navbar-expand-lg navbar-dark bg-dark">';
+    echo '<div class="container">';
+    echo '<a class="navbar-brand" href="index.php">Wolvox Entegrasyon</a>';
+    echo '<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">';
+    echo '<span class="navbar-toggler-icon"></span>';
+    echo '</button>';
+    echo '<div class="collapse navbar-collapse" id="navbarNav">';
+    echo '<ul class="navbar-nav">';
     foreach ($menuItems as $key => $label) {
-        echo "<a href='index.php?page=$key'>$label</a> | ";
+        $active = ($page === $key) ? ' active' : '';
+        echo "<li class='nav-item'><a class='nav-link$active' href='index.php?page=$key'>$label</a></li>";
     }
+    echo '</ul>';
+    echo '</div>';
+    echo '</div>';
     echo '</nav>';
-    echo '<hr>';
 }
-
+?>
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wolvox Entegrasyon</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.datatables.net/1.13.7/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+</head>
+<body>
+<?php
 // Dinamik sayfa yönlendirme
 if ($page === 'home') {
     // Anasayfa
     renderMenu();
+    echo '<div class="container mt-4">';
     echo "<h1>Yönetim Paneline Hoş Geldiniz</h1>";
     echo "<p>B2C işlemleri için yukarıdaki menüyü kullanabilirsiniz.</p>";
+    echo '</div>';
 } elseif ($page === 'b2c_products') {
     // B2C Ürün Yönetimi
     renderMenu();
@@ -59,5 +85,15 @@ if ($page === 'home') {
     // 404 - Sayfa bulunamadı
     renderMenu();
     http_response_code(404);
+    echo '<div class="container mt-4">';
     echo "<h2>404 - Sayfa Bulunamadı!</h2>";
+    echo '</div>';
 }
+?>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap5.min.js"></script>
+</body>
+</html>

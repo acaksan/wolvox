@@ -1,10 +1,12 @@
 {
-    "name": "acaksan/woocommerce-b2c-integration",
-    "description": "WooCommerce ve Wolvox B2C Entegrasyonu için geliştirilmiş bir yönetim paneli.",
+    "name": "acaksan/wolvox-woocommerce-integration",
+    "description": "Wolvox ve WooCommerce entegrasyonu",
     "type": "project",
     "require": {
-        "php": "^7.4 || ^8.0",
-        "automattic/woocommerce": "^3.1"
+        "php": ">=7.4",
+        "automattic/woocommerce": "^3.0",
+        "ext-pdo": "*",
+        "ext-pdo_firebird": "*"
     },
     "autoload": {
         "psr-4": {

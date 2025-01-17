@@ -15,7 +15,7 @@ class WooCommerceClient {
             [
                 'version' => 'wc/v3',       // WooCommerce API versiyonu
                 'timeout' => 30,           // API isteği zaman aşımı
-                'verify_ssl' => true,      // SSL sertifikasını doğrula
+                'verify_ssl' => false,      // SSL sertifikasını doğrulama (geliştirme için kapalı)
             ]
         );
     }

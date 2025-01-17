@@ -1,5 +1,11 @@
 <?php
 
+namespace Classes;
+
+use PDO;
+use PDOException;
+use Exception;
+
 class Database
 {
     private $firebirdConnection;
@@ -7,11 +13,11 @@ class Database
     public function connectToFirebird($config)
     {
         // Bağlantı bilgilerini kontrol et
-        if (empty($config['host']) || empty($config['database']) || empty($config['user']) || empty($config['password']) || empty($config['charset'])) {
+        if (empty($config['database']) || empty($config['user']) || empty($config['password'])) {
             throw new Exception("Firebird bağlantı bilgileri eksik.");
         }
 
-        $dsn = "firebird:dbname={$config['host']}:{$config['database']};charset={$config['charset']}";
+        $dsn = "firebird:dbname={$config['database']};charset=UTF8";
 
         try {
             $this->firebirdConnection = new PDO($dsn, $config['user'], $config['password']);
