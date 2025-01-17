@@ -1,0 +1,8 @@
+{
+    "name": "acaksan/project",
+    "description": "A brief description of your project",
+    "license": "proprietary",
+    "require": {
+        "automattic/woocommerce": "^3.1"
+    }
+}

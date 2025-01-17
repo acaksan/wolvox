@@ -1,27 +1,41 @@
 <?php
 require_once __DIR__ . '/../classes/Database.php';
-$config = require_once __DIR__ . '/../config/database.php';
+$configFile = __DIR__ . '/../config/database.php';
 
-$products = []; // Varsayılan boş dizi
+// Varsayılan değerler
+$products = [];
+$exampleProduct = [];
 $exampleProductCode = 'PET-100-70-13-175-6050'; // Örnek stok kodu
-$exampleProduct = []; // Varsayılan boş dizi
+
+// Bağlantı bilgilerini kontrol edin
+if (!file_exists($configFile)) {
+    die("Hata: Bağlantı ayar dosyası bulunamadı.");
+}
+
+$config = require $configFile;
+
+// Firebird bağlantı bilgilerini doğrulayın
+if (empty($config['firebird']) || empty($config['firebird']['host']) || empty($config['firebird']['database']) || empty($config['firebird']['user']) || empty($config['firebird']['password'])) {
+    die("Hata: Firebird bağlantı bilgileri eksik.");
+}
 
 try {
+    // Firebird bağlantısını kur
     $db = new Database();
     $firebird = $db->connectToFirebird($config['firebird']);
 
-    // Aktif ve webde görünecek ürünleri çek
+    // Tüm ürünleri çek (aktif ve webde görünecek ürünler)
     $query = $firebird->query("SELECT STOKKODU, STOK_ADI FROM STOK WHERE WEBDE_GORUNSUN = 1 AND AKTIF = 1");
     if ($query) {
         $products = $query->fetchAll(PDO::FETCH_ASSOC);
     }
 
-    // Örnek ürün detaylarını çek
+    // Örnek ürünü çek
     $exampleQuery = $firebird->prepare("SELECT * FROM STOK WHERE STOKKODU = ?");
     $exampleQuery->execute([$exampleProductCode]);
     $exampleProduct = $exampleQuery->fetch(PDO::FETCH_ASSOC) ?: [];
 } catch (PDOException $e) {
-    echo "Hata: " . $e->getMessage();
+    echo "Hata: Firebird bağlantı hatası: " . $e->getMessage();
 }
 ?>
 
@@ -37,8 +51,8 @@ try {
     <?php if (!empty($products)): ?>
         <?php foreach ($products as $product): ?>
             <tr>
-                <td><?php echo htmlspecialchars($product['STOKKODU']); ?></td>
-                <td><?php echo htmlspecialchars($product['STOK_ADI']); ?></td>
+                <td><?php echo htmlspecialchars($product['STOKKODU'] ?? ''); ?></td>
+                <td><?php echo htmlspecialchars($product['STOK_ADI'] ?? ''); ?></td>
             </tr>
         <?php endforeach; ?>
     <?php else: ?>
@@ -54,8 +68,8 @@ try {
     <?php if (!empty($exampleProduct)): ?>
         <?php foreach ($exampleProduct as $key => $value): ?>
             <tr>
-                <td><strong><?php echo htmlspecialchars($key); ?></strong></td>
-                <td><?php echo htmlspecialchars($value); ?></td>
+                <td><strong><?php echo htmlspecialchars($key ?? ''); ?></strong></td>
+                <td><?php echo htmlspecialchars($value ?? ''); ?></td>
             </tr>
         <?php endforeach; ?>
     <?php else: ?>
@@ -71,8 +85,8 @@ try {
     <?php if (!empty($exampleProduct)): ?>
         <?php foreach ($exampleProduct as $key => $value): ?>
             <label>
-                <input type="checkbox" name="woocommerce_features[]" value="<?php echo htmlspecialchars($key); ?>">
-                <?php echo htmlspecialchars($key); ?>
+                <input type="checkbox" name="woocommerce_features[]" value="<?php echo htmlspecialchars($key ?? ''); ?>">
+                <?php echo htmlspecialchars($key ?? ''); ?>
             </label><br>
         <?php endforeach; ?>
         <button type="submit">Seçilen Özellikleri Gönder</button>
